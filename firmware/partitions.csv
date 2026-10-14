@@ -1,0 +1,16 @@
+# Name,     Type, SubType,   Offset,   Size,     Flags
+# 双固件方案（v2）：factory=三合一，ota_0=小智(xiaozhi) 固件。
+# 主控页选 AI = esp_ota_set_boot_partition(ota_0) + 重启；
+# 回三合一 = esp_ota_set_boot_partition(factory)（即擦除 otadata）+ 重启。
+# app 分区须 64KB 对齐；store/netcfg 之后 0x328000-0x330000 留 32KB 对齐间隙。
+nvs,        data, nvs,       0x9000,   0x6000,
+otadata,    data, ota,       0xf000,   0x2000,
+phy_init,   data, phy,       0x11000,  0x1000,
+factory,    app,  factory,   0x20000,  0x300000,
+store,      data, nvs,       0x320000, 0x4000,
+netcfg,     data, nvs,       0x324000, 0x4000,
+ota_0,      app,  ota_0,     0x330000, 0x300000,
+fs,         data, littlefs,  0x630000, 0x80000,
+# 0x6B0000-0x730000 unallocated: raw cover cache for the player module (512KB).
+# Must stay outside every partition: IDF write-protects the running app partition.
+# 0x730000-0x800000 reserved (~832KB) for future growth.

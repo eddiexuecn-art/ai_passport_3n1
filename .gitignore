@@ -1,0 +1,20 @@
+# Build outputs
+build/
+sdkconfig
+sdkconfig.old
+
+# Component manager downloads (regenerated from idf_component.yml + dependencies.lock)
+managed_components/
+
+# Python runtime
+__pycache__/
+*.pyc
+.venv/
+
+# Server runtime user data (credentials, task/record files, audio cache)
+podcast/server/data/
+podcast/server/media/
+
+# Local tooling
+.trae/
+.claude/

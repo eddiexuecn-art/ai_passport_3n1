@@ -1,0 +1,5 @@
+## main 组件依赖：会话记录使用 fs 分区上的 LittleFS（joltwallet/littlefs，
+## 头文件 esp_littlefs.h）。任务快照走 NVS（IDF 内置），此处只声明文件系统组件。
+dependencies:
+  joltwallet/littlefs:
+    version: "^1.22"
